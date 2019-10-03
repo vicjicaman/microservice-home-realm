@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '${GRAPH_DEPLOYMENT_NAME}'
+  namespace: '${NAMESPACE@microservice-config}'
+  labels:
+    app: '${GRAPH_DEPLOYMENT_NAME}'
+    moduleid: microservice-home-realm
+    version: 1.70.0-master
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: '${GRAPH_DEPLOYMENT_NAME}'
+  template:
+    metadata:
+      labels:
+        app: '${GRAPH_DEPLOYMENT_NAME}'
+    spec:
+      containers:
+        -
+          name: app
+          image: 'repoflow/microservice-home-graph-container:1.70.2-master'
+          env:
+            -
+              name: HOME_ROUTE_GRAPH
+              value: '${GRAPH_BASE_ROUTE@microservice-home-config}'
+            -
+              name: HOME_INTERNAL_PORT_GRAPH
+              value: '${GRAPH_INTERNAL_PORT@microservice-home-config}'
+            -
+              name: AUTH_CACHE_INTERNAL_HOST
+              value: '${CACHE_INTERNAL_HOST@microservice-auth-config}'
+            -
+              name: AUTH_CACHE_INTERNAL_PORT
+              value: '${CACHE_INTERNAL_PORT@microservice-auth-config}'
+            -
+              name: AUTH_CACHE_SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: '${CACHE_SECRET_NAME@microservice-auth-config}'
+                  key: password
+            -
+              name: ACCOUNT_INTERNAL_URL_GRAPH
+              value: '${ACCOUNT_GRAPH_INTERNAL_URL@microservice-auth-config}'
+            -
+              name: RESOURCES_CACHE_INTERNAL_HOST
+              value: '${CACHE_INTERNAL_HOST@microservice-resources-config}'
+            -
+              name: RESOURCES_CACHE_INTERNAL_PORT
+              value: '${CACHE_INTERNAL_PORT@microservice-resources-config}'
+            -
+              name: RESOURCES_CACHE_SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: '${CACHE_SECRET_NAME@microservice-resources-config}'
+                  key: password
+          ports:
+            -
+              containerPort: '${GRAPH_INTERNAL_PORT@microservice-home-config}'

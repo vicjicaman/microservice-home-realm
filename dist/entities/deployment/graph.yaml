@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-graph-deployment
+  namespace: microservices-namespace
+  labels:
+    app: home-graph-deployment
+    moduleid: microservice-home-realm
+    version: 1.70.0-master
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: home-graph-deployment
+  template:
+    metadata:
+      labels:
+        app: home-graph-deployment
+    spec:
+      containers:
+        -
+          name: app
+          image: 'repoflow/microservice-home-graph-container:1.70.2-master'
+          env:
+            -
+              name: HOME_ROUTE_GRAPH
+              value: /backend/graphql
+            -
+              name: HOME_INTERNAL_PORT_GRAPH
+              value: '4000'
+            -
+              name: AUTH_CACHE_INTERNAL_HOST
+              value: auth-cache-service.microservices-namespace
+            -
+              name: AUTH_CACHE_INTERNAL_PORT
+              value: '6379'
+            -
+              name: AUTH_CACHE_SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: auth-cache-secret
+                  key: password
+            -
+              name: ACCOUNT_INTERNAL_URL_GRAPH
+              value: 'http://auth-account-graph-service.microservices-namespace:4000/graphql'
+            -
+              name: RESOURCES_CACHE_INTERNAL_HOST
+              value: resources-cache-service.microservices-namespace
+            -
+              name: RESOURCES_CACHE_INTERNAL_PORT
+              value: '6379'
+            -
+              name: RESOURCES_CACHE_SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: resources-cache-secret
+                  key: password
+          ports:
+            -
+              containerPort: 4000
