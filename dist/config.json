@@ -1,0 +1,10 @@
+{
+  "WEB_DEPLOYMENT_NAME": {
+    "value": "home-web-deployment",
+    "type": null
+  },
+  "GRAPH_DEPLOYMENT_NAME": {
+    "value": "home-graph-deployment",
+    "type": null
+  }
+}
