@@ -14,5 +14,9 @@
   "SERVICES_VIEWER_ROLE_NAME": {
     "value": "viewer-services-role",
     "type": null
+  },
+  "SERVICES_VIEWER_DEFAULT_BIND_NAME": {
+    "value": "viewer-services-default-role",
+    "type": null
   }
 }
