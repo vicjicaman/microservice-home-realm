@@ -17,6 +17,7 @@ spec:
       labels:
         app: home-graph-deployment
     spec:
+      serviceAccountName: viewer-services
       containers:
         -
           name: app

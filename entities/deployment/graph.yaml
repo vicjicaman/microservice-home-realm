@@ -17,6 +17,7 @@ spec:
       labels:
         app: '${GRAPH_DEPLOYMENT_NAME}'
     spec:
+      serviceAccountName: '${SERVICES_VIEWER_ACCOUNT_NAME}'
       containers:
         -
           name: app
