@@ -10,7 +10,7 @@
     },
     "microservice-home-config": {
       "url": "github.com:vicjicaman/microservice-home-config.git",
-      "version": "1.70.2-master"
+      "version": "1.70.1-home-intro-prod"
     },
     "microservice-auth-config": {
       "url": "github.com:vicjicaman/microservice-auth-config.git",
@@ -38,6 +38,5 @@
       "name": "SERVICES_VIEWER_DEFAULT_BIND_NAME",
       "value": "viewer-services-default-role"
     }
-
   ]
 }
