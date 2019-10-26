@@ -6,11 +6,11 @@
     },
     "microservice-resources-config": {
       "url": "github.com:vicjicaman/microservice-resources-config.git",
-      "version": "1.70.2-master"
+      "version": "1.70.4-master"
     },
     "microservice-home-config": {
       "url": "github.com:vicjicaman/microservice-home-config.git",
-      "version": "1.70.2-master"
+      "version": "1.70.3-master"
     },
     "microservice-auth-config": {
       "url": "github.com:vicjicaman/microservice-auth-config.git",
@@ -25,6 +25,18 @@
     {
       "name": "GRAPH_DEPLOYMENT_NAME",
       "value": "home-graph-deployment"
+    },
+    {
+      "name": "SERVICES_VIEWER_ACCOUNT_NAME",
+      "value": "viewer-services"
+    },
+    {
+      "name": "SERVICES_VIEWER_ROLE_NAME",
+      "value": "viewer-services-role"
+    },
+    {
+      "name": "SERVICES_VIEWER_DEFAULT_BIND_NAME",
+      "value": "viewer-services-default-role"
     }
   ]
 }
