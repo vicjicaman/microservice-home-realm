@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: microservice-home-ingress
+  namespace: ${NAMESPACE@microservice-config}
+  labels:
+    moduleid: microservice-home-realm
+    version: 1.70.0-master
+    last_updated: CHANGE_TO_UNIXTS
+spec:
+  tls:
+    - hosts:
+        - ${HOST@microservice-config}
+      secretName: certificates-secret
+  rules:
+    - host: ${HOST@microservice-config}
+      http:
+        paths:
+          - path: ${BACKEND_BASE_ROUTE@microservice-home-config}
+            backend:
+              serviceName: ${GRAPH_SERVICE_NAME@microservice-home-config}
+              servicePort: ${GRAPH_INTERNAL_PORT@microservice-home-config}
+          - path: ${WEB_BASE_ROUTE@microservice-home-config}
+            backend:
+              serviceName: ${WEB_SERVICE_NAME@microservice-home-config}
+              servicePort: ${WEB_INTERNAL_PORT@microservice-home-config}
