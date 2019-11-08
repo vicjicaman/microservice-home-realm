@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: microservice-home-ingress
+  namespace: repoflow-blog-namespace
+  labels:
+    moduleid: microservice-home-realm
+    version: 1.70.0-master
+    last_updated: CHANGE_TO_UNIXTS
+spec:
+  tls:
+    - hosts:
+        - blog.repoflow.com
+      secretName: certificates-secret
+  rules:
+    - host: blog.repoflow.com
+      http:
+        paths:
+          - path: /backend
+            backend:
+              serviceName: home-graph-service
+              servicePort: 4000
+          - path: /
+            backend:
+              serviceName: home-web-service
+              servicePort: 3000

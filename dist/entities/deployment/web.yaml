@@ -2,11 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: home-web-deployment
-  namespace: microservices-namespace
+  namespace: repoflow-blog-namespace
   labels:
     app: home-web-deployment
     moduleid: microservice-home-realm
-    version: 1.70.2-master
+    version: 1.70.4-master
 spec:
   replicas: 2
   selector:
@@ -20,11 +20,11 @@ spec:
       containers:
         -
           name: app
-          image: 'repoflow/microservice-home-web-container:1.70.2-master'
+          image: 'repoflow/microservice-home-web-container:1.70.4-master'
           env:
             -
               name: HOST
-              value: www.repoflow.com
+              value: blog.repoflow.com
             -
               name: HOME_BASE_ROUTE_APP
               value: /
@@ -33,10 +33,10 @@ spec:
               value: '3000'
             -
               name: HOME_EXTERNAL_URL_GRAPH
-              value: 'https://www.repoflow.com/backend/graphql'
+              value: 'https://blog.repoflow.com/backend/graphql'
             -
               name: HOME_INTERNAL_URL_GRAPH
-              value: 'http://home-graph-service.microservices-namespace:4000/backend/graphql'
+              value: 'http://home-graph-service.repoflow-blog-namespace:4000/backend/graphql'
             -
               name: RESOURCE_BASE_ROUTE
               value: /resources

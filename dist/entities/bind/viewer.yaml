@@ -2,14 +2,14 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: viewer-services-default-role
-  namespace: microservices-namespace
+  namespace: repoflow-blog-namespace
   labels:
     moduleid: microservice-home-realm
     version: 1.70.0-master
 subjects:
 - kind: ServiceAccount
   name: viewer-services
-  namespace: microservices-namespace
+  namespace: repoflow-blog-namespace
 roleRef:
   kind: Role
   name: viewer-services-role
