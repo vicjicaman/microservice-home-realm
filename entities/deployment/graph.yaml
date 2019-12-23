@@ -24,6 +24,9 @@ spec:
           image: 'repoflow/microservice-home-graph-container:1.70.5-master'
           env:
             -
+              name: ENV_MODE
+              value: production
+            -
               name: HOME_ROUTE_GRAPH
               value: '${GRAPH_BASE_ROUTE@microservice-home-config}'
             -
