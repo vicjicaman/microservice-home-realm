@@ -27,6 +27,12 @@ spec:
               name: ENV_MODE
               value: production
             -
+              name: NODE_ENV
+              value: production
+            -
+              name: ENV_LOG_FOLDER
+              value: /env/logs
+            -
               name: HOME_ROUTE_GRAPH
               value: /backend/graphql
             -
